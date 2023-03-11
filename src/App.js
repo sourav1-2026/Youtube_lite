@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -12,15 +11,25 @@ import { AppContext } from "./context/ContextApi";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Feed></Feed>,
+    element: <Header></Header>,
+    children: [{ index: true, element: <Feed></Feed> }],
+  },
+  {
+    path: "/searchResult/:searchQuery",
+    element: <SearchResult></SearchResult>,
+  },
+  {
+    path: "/video/:id",
+    element: <VideoDetails></VideoDetails>,
   },
 ]);
 
 function App() {
   return (
     <AppContext>
-      <Header />
-      <RouterProvider router={router} />
+      <div className="flex flex-col h-full">
+        <RouterProvider router={router} />
+      </div>
     </AppContext>
   );
 }
