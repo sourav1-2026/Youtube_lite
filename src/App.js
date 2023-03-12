@@ -8,19 +8,45 @@ import SearchResult from "./components/SearchResult";
 import VideoDetails from "./components/VideoDetails";
 import { AppContext } from "./context/ContextApi";
 
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Header></Header>,
+//     children: [{ index: true, element: <Feed></Feed> }],
+//   },
+
+//   {
+//     path: "/searchResult/:searchQuery",
+//     element: <SearchResult></SearchResult>,
+//   },
+//   {
+//     path: "/video/:id",
+//     element: (
+//       <Header>
+//         <VideoDetails />
+//       </Header>
+//     ),
+//   },
+// ]);
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Header></Header>,
-    children: [{ index: true, element: <Feed></Feed> }],
-  },
-  {
-    path: "/searchResult/:searchQuery",
-    element: <SearchResult></SearchResult>,
-  },
-  {
-    path: "/video/:id",
-    element: <VideoDetails></VideoDetails>,
+    children: [
+      {
+        path: "/",
+        element: <Feed />,
+      },
+      {
+        path: "/video/:id",
+        element: <VideoDetails />,
+      },
+      {
+        path: "/searchResult/:searchQuery",
+        element: <SearchResult></SearchResult>,
+      },
+    ],
   },
 ]);
 
